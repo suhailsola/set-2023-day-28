@@ -9,6 +9,7 @@ import Page404 from "./pages/404";
 import Home from "./pages/Home";
 import { useContext } from "react";
 import { AdminContext } from "./App";
+import Components from "./pages/Components";
 
 function Router() {
   const { isAdmin, setIsAdmin } = useContext(AdminContext);
@@ -26,8 +27,8 @@ function Router() {
       element: isAdmin ? <Private /> : <Navigate to={"/"} />,
     },
     {
-      path: "/",
-      element: <Home />,
+      path: "/components",
+      element: <Components />,
     },
     {
       path: "*",

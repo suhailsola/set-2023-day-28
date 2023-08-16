@@ -1,15 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Modal = ({ isShow = false, setShow, children }) => {
-  // const [closeModal, setCloseModal] = useState(true);
-  //   const cancelLoginHandler = () => {
-  //     // console.log(closeModal);
-  //     setShow(false);
-  //   };
+const Modal = ({ isShow = false, children }) => {
   return (
     isShow && (
-      <div className="bg-blue-700/10 fixed top-0 left-0 w-screen h-screen flex justify-center items-center ">
-        {children}
+      <div className="fixed inset-0 flex items-center justify-center z-50 ">
+        <div className=" flex flex-col justify-center items-center p-5 rounded-md gap-5">
+          {children}
+        </div>
       </div>
     )
   );

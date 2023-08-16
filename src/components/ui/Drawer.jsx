@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 
-// const Drawer = ({ slideLeft, children }) => {
-//   return (
-//     <div
-//       className="bg-gray-700 absolute top-0 h-screen w-[300px] z-50 flex flex-col justify-between align-center text-center text-white py-11 transition-all duration-300"
-//       style={{ right: slideLeft }}
-//     >
-//       <div className=" w-9 h-9 absolute top-0 right-0">
-//         <button className="text-white py-2 px-4">X</button>
-//       </div>
-//       {children}
-//     </div>
-//   );
-// };
-
-const Drawer = ({ slideLeft, onClose, children }) => {
+const Drawer = ({
+  placement = "right",
+  y = "top",
+  slide,
+  slideVertical,
+  onClose,
+  children,
+}) => {
+  const positionXStyle = {
+    right: placement === "right" ? slide : "auto",
+    left: placement === "left" ? slide : "auto",
+  };
+  const positionYStyle = {
+    top: y === "top" ? slide : "auto",
+    bottom: y === "bottom" ? slideVertical : "auto",
+  };
   return (
     <div
-      className="bg-gray-700 absolute top-0 h-screen w-[300px] z-50 flex flex-col justify-between align-center text-center text-white py-11 transition-all duration-300"
-      style={{ right: slideLeft }}
+      className="bg-gray-700 absolute w-[300px] h-screen z-50 flex flex-col justify-between align-center text-center text-white py-11 transition-all duration-300"
+      style={{ ...positionXStyle, ...positionYStyle }}
     >
       <div className="w-9 h-9 absolute top-0 right-0">
         <button className="text-white py-2 px-4" onClick={onClose}>
@@ -33,28 +34,17 @@ const Drawer = ({ slideLeft, onClose, children }) => {
 export default Drawer;
 
 export const DrawerHeader = ({ children }) => {
-  return (
-    <div>
-      {children}
-      <h1>Drawer Header</h1>
-    </div>
-  );
+  return <div className=" font-bold text-center">{children}</div>;
 };
 
 export const DrawerBody = ({ children }) => {
   return (
-    <div>
+    <div className=" bg-slate-400 text-justify p-6 flex flex-col justify-between items-center gap-5">
       {children}
-      <h1>Drawer Body</h1>
     </div>
   );
 };
 
 export const DrawerFooter = ({ children }) => {
-  return (
-    <div>
-      {children}
-      <h1>Drawer Footer</h1>
-    </div>
-  );
+  return <div>{children}</div>;
 };
